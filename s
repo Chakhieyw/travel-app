@@ -1,0 +1,1 @@
+ng g c pages/async-demo --skip-tests

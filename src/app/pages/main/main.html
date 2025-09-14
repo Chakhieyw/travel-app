@@ -1,0 +1,58 @@
+<div class="container">
+  <!-- ปุ่มไปหน้า admin -->
+  <div class="actions" style="margin-bottom: 20px; text-align: right">
+    <button mat-raised-button color="primary" [routerLink]="['/admin']">
+      แก้ไขสถานที่
+    </button>
+  </div>
+
+  <!-- ฟอร์มค้นหา -->
+  <mat-card class="search-card">
+    <form [formGroup]="filterForm" (ngSubmit)="search()" class="search-form">
+      <mat-form-field appearance="fill">
+        <mat-label>ค้นหา ID</mat-label>
+        <input matInput formControlName="id" placeholder="ใส่ ID" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>ชื่อสถานที่</mat-label>
+        <input matInput formControlName="name" placeholder="ชื่อ" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>ประเทศ</mat-label>
+        <mat-select formControlName="country">
+          <mat-option value="">ทุกประเทศ</mat-option>
+          <mat-option *ngFor="let c of countries" [value]="c">
+            {{ c }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-stroked-button color="primary" type="submit">ค้นหา</button>
+      </div>
+    </form>
+  </mat-card>
+
+  <!-- รายการทริป -->
+  <div class="trip-list">
+    <mat-card class="trip-card" *ngFor="let t of trip">
+      <img mat-card-image [src]="t.coverimage || 'assets/placeholder.jpg'" />
+      <mat-card-header>
+        <mat-card-title>{{ t.name }}</mat-card-title>
+        <mat-card-subtitle
+          >{{ t.country }} • {{ t.destination_zone }}</mat-card-subtitle
+        >
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ t.detail }}</p>
+        <p>ราคา: {{ t.price | currency:'THB' }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="accent" [routerLink]="['/trip', t.idx]">
+          ดูรายละเอียด
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

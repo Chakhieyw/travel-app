@@ -1,0 +1,72 @@
+<mat-card class="place-form-card">
+  <form [formGroup]="form" (ngSubmit)="submit()" class="place-form">
+    <div class="form-grid">
+      <!-- ชื่อสถานที่ -->
+      <mat-form-field appearance="fill">
+        <mat-label>ชื่อสถานที่</mat-label>
+        <input matInput formControlName="name" />
+        <mat-error *ngIf="form.get('name')?.invalid">กรุณากรอกชื่อ</mat-error>
+      </mat-form-field>
+
+      <!-- ราคา -->
+      <mat-form-field appearance="fill">
+        <mat-label>ราคา</mat-label>
+        <input matInput type="number" formControlName="price" />
+      </mat-form-field>
+
+      <!-- รายละเอียด -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>รายละเอียด</mat-label>
+        <textarea matInput formControlName="description" rows="4"></textarea>
+      </mat-form-field>
+
+      <!-- ประเทศ -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>ประเทศ</mat-label>
+        <mat-select formControlName="country">
+          <!-- ตัวเลือก “ทุกประเทศ” -->
+          <mat-option value="">ทุกประเทศ</mat-option>
+          <!-- ตัวเลือกจาก API -->
+          <mat-option *ngFor="let c of countries" [value]="c">
+            {{ c }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- ทวีป -->
+      <mat-form-field appearance="fill">
+        <mat-label>ทวีป</mat-label>
+        <mat-select formControlName="continent">
+          <mat-option *ngFor="let c of continents" [value]="c"
+            >{{ c }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+
+      <!-- รูปภาพ (ไฟล์) -->
+      <div class="file-input">
+        <label>รูปภาพ (ไฟล์)</label>
+        <input type="file" (change)="onFileChange($event)" />
+      </div>
+
+      <!-- URL รูปภาพ -->
+      <mat-form-field appearance="fill">
+        <mat-label>หรือ ใส่ URL รูปภาพ</mat-label>
+        <input matInput formControlName="imageUrl" />
+      </mat-form-field>
+    </div>
+
+    <!-- ปุ่ม action -->
+    <div class="actions">
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <!-- fields... -->
+        <button mat-raised-button color="primary" type="submit">
+          {{ isEdit ? 'บันทึกการแก้ไข' : 'เพิ่มสถานที่' }}
+        </button>
+      </form>
+      <button mat-stroked-button color="warn" type="button" (click)="cancel()">
+        ยกเลิก
+      </button>
+    </div>
+  </form>
+</mat-card>

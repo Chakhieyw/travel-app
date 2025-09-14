@@ -1,0 +1,47 @@
+/* place-form.scss */
+.place-form-card {
+  max-width: 900px;
+  margin: 24px auto;
+  padding: 24px;
+}
+
+.place-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+
+  .full-width {
+    grid-column: span 2;
+  }
+
+  .file-input {
+    grid-column: span 2;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    input[type='file'] {
+      padding: 4px 0;
+    }
+  }
+}
+
+/* ปุ่มด้านล่างขวา */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+/* responsive สำหรับมือถือ */
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}

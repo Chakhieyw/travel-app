@@ -1,0 +1,35 @@
+<!-- Loading spinner -->
+<div *ngIf="loading" class="loading-container">
+  <div class="spinner"></div>
+  <p>กำลังโหลดข้อมูล...</p>
+</div>
+
+<!-- Trip Card -->
+<mat-card *ngIf="!loading && trip" class="trip-card">
+  <div class="image-container">
+    <img
+      [src]="trip.coverimage || 'assets/placeholder.jpg'"
+      alt="{{ trip.name }}"
+      class="trip-image"
+    />
+    <div class="overlay">
+      <h2 class="trip-name">{{ trip.name }}</h2>
+      <p class="trip-subtitle">
+        {{ trip.country }} • {{ trip.destination_zone }}
+      </p>
+    </div>
+  </div>
+
+  <mat-card-content class="trip-content">
+    <p class="trip-detail">{{ trip.detail }}</p>
+    <div class="trip-info">
+      <span
+        ><strong>ราคา:</strong> {{ trip.price | currency:'THB':'symbol' }}</span
+      >
+      <span><strong>ระยะเวลา:</strong> {{ trip.duration }} วัน</span>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<!-- No Data -->
+<div *ngIf="!loading && !trip" class="no-data">ไม่พบข้อมูลการเดินทาง</div>

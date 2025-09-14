@@ -1,0 +1,43 @@
+.container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 10px;
+
+  .search-card {
+    padding: 20px;
+    margin-bottom: 20px;
+
+    .search-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+
+      mat-form-field {
+        flex: 1 1 200px;
+      }
+
+      button {
+        height: 56px;
+        align-self: flex-end;
+      }
+    }
+  }
+
+  .trip-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+
+    .trip-card {
+      img {
+        height: 180px;
+        object-fit: cover;
+      }
+
+      mat-card-content p {
+        margin: 5px 0;
+      }
+    }
+  }
+}
